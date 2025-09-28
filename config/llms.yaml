@@ -1,0 +1,8 @@
+# config/llms.yaml
+# CrewAI의 CrewBase가 이 파일을 읽을 때, provider와 config 계층을 제거하고
+# 내용을 평탄화하여 LiteLLM에 전달할 수 있습니다.
+# (LiteLLM이 모델 이름을 명시적으로 인식하도록 변경)
+openai: # agents.yaml에서 참조할 이름
+  model: openai/gpt-4o-mini
+  base_url: 'https://api.openai.com/v1'
+  temperature: 0.7
