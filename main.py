@@ -5,7 +5,7 @@ dotenv.load_dotenv()
 
 from crewai import Crew, Agent, Task, LLM
 from crewai.project import CrewBase, agent, task, crew, llm
-
+from tools import count_letters
 
 @CrewBase
 class TranslatorCrew:
@@ -24,6 +24,14 @@ class TranslatorCrew:
             llm=self.openai_llm(),  # LLM 인스턴스를 직접 참조
         )
 
+    @agent
+    def counter_agent(self):
+        return Agent(
+            config=self.agents_config["counter_agent"],
+            tools=[count_letters],
+            llm=self.openai_llm(),  # LLM 인스턴스를 직접 참조
+        )
+
     @task
     def translate_task(self):
         return Task(
@@ -34,6 +42,12 @@ class TranslatorCrew:
     def retranslate_task(self):
         return Task(
             config=self.tasks_config["retranslate_task"],
+        )
+
+    @task
+    def count_task(self):
+        return Task(
+            config=self.tasks_config["count_task"],
         )
 
     @crew
