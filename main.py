@@ -1,5 +1,5 @@
 import dotenv
-import os
+# import os
 
 dotenv.load_dotenv()
 
@@ -10,18 +10,18 @@ from tools import count_letters
 @CrewBase
 class TranslatorCrew:
     # 🚀 LLM 정의 메서드 추가
-    @llm
-    def openai_llm(self):
-        return LLM(
-            model='openai/gpt-5-nano',
-            base_url=os.getenv("OPENAI_API_BASE", 'https://api.openai.com/v1'),
-        )
+    # @llm
+    # def openai_llm(self):
+    #     return LLM(
+    #         model='openai/gpt-5-nano',
+    #         base_url=os.getenv("OPENAI_API_BASE", 'https://api.openai.com/v1'),
+    #     )
 
     @agent
     def translator_agent(self):
         return Agent(
             config=self.agents_config["translator_agent"],
-            llm=self.openai_llm(),  # LLM 인스턴스를 직접 참조
+            #llm=self.openai_llm(),  # LLM 인스턴스를 직접 참조
         )
 
     @agent
@@ -29,7 +29,7 @@ class TranslatorCrew:
         return Agent(
             config=self.agents_config["counter_agent"],
             tools=[count_letters],
-            llm=self.openai_llm(),  # LLM 인스턴스를 직접 참조
+            # llm=self.openai_llm(),  # LLM 인스턴스를 직접 참조
         )
 
     @task
