@@ -40,7 +40,7 @@ summarizer_agent:
     sources into coherent narratives.
   verbose: true
   inject_date: true
-  llm: openai/o3
+  llm: openai/gpt-4o-mini
 
 curator_agent:
   role: >
